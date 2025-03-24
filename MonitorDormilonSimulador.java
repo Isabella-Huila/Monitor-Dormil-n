@@ -61,8 +61,35 @@ class MonitorDormilon {
             e.printStackTrace();
         }
     }
-   
+
+    //Aqui va el método de atenderEstudiantes
+   public void atenderEstudiantes(){}
 }
 
+class Estudiante implements Runnable {
+    private MonitorDormilon monitor;
+    private int id;
 
+    public Estudiante(MonitorDormilon monitor, int id) {
+        this.monitor = monitor;
+        this.id = id;
+    }
 
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                System.out.println("Estudiante " + id + ": Estoy programando en la sala de cómputo");
+                Thread.sleep((int) (Math.random() * 5000) + 1000);
+
+                System.out.println("Estudiante " + id + ": Necesito ayuda, voy a la oficina del monitor");
+                monitor.pedirAyuda(id);
+
+                System.out.println("Estudiante " + id + ": Vuelvo a programar después de recibir ayuda");
+                Thread.sleep((int) (Math.random() * 8000) + 2000);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}

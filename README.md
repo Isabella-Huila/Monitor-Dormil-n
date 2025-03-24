@@ -1,7 +1,7 @@
 Nombres:
 
 - Daniela Londoño Candelo - A00392917
-- Danna López - 
+- Danna López - A00395625
 - Isabella Huila - A00394751
 
 Descripción: 
