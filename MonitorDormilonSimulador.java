@@ -62,8 +62,28 @@ class MonitorDormilon {
         }
     }
 
-    //Aqui va el método de atenderEstudiantes
-   public void atenderEstudiantes(){}
+    public void atenderEstudiantes() {
+        try {
+            while (true) {
+                System.out.println("Monitor: Estoy durmiendo zzzzzzzz...");
+                sillaMonitor.acquire();
+
+                int idActual;
+                synchronized (colaStudents) {
+                    idActual = colaStudents.poll();
+                }
+
+                System.out.println("Monitor: El estudiante " + idActual + " me ha despertado");
+                monitorListo.release();
+
+                System.out.println("Monitor: Estoy ayudando al estudiante " + idActual);
+                Thread.sleep(2000);
+                System.out.println("Monitor: He terminado de ayudar al estudiante " + idActual);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 class Estudiante implements Runnable {
